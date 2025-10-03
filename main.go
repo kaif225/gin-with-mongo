@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"moviestreaming/controller"
 	"moviestreaming/database"
+	"moviestreaming/routes"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -23,11 +23,9 @@ func main() {
 		return
 	}
 	router := gin.Default()
-	router.GET("/movies", controller.GetMovies)
-	router.GET("/movies/:imdb_id", controller.GetMovie)
-	router.POST("/movies", controller.AddMovies)
-	router.POST("/register", controller.RegisterUser)
-	router.POST("/login", controller.LoginUser)
+	routes.Protected(router)
+	routes.Unprotected(router)
+
 	err = router.Run(":8007")
 
 	if err != nil {
