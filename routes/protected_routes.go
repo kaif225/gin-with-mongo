@@ -14,4 +14,6 @@ func Protected(router *gin.Engine) {
 
 	protected.GET("/movies/:imdb_id", controller.GetMovie)
 	protected.POST("/addMovies", controller.AddMovies)
+	protected.GET("/recommendedmovies", controller.GetRecommendedMovies)
+	protected.PATCH("/updatereview/:imbd_id", controller.AdminReview)
 }
